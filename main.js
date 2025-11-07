@@ -27,4 +27,17 @@ async function getBanCount(username) {
   }
 }
 
-getBanCount("Test Testsson").then(console.warn);
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("userForm");
+  const result = document.getElementById("result");
+  console.log("YO");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const username = document.getElementById("username").value.trim();
+    const output = await getBanCount(username);
+
+    result.textContent = output;
+  });
+});
