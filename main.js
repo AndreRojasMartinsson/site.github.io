@@ -6,10 +6,15 @@ async function getBanCount(username) {
   const text = await res.text();
 
   const rows = text
+    .replace(/\r/g, "")
     .trim()
     .split("\n")
-    .map((r) => r.split(","));
-  console.log(rows);
+    .map((r) => r.split(",").map((cell) => cell.trim()));
+  if (rows.length === 0) {
+    console.warn("No data found in sheet.");
+    return null;
+  }
+
   const headers = rows[0];
   const usernameIndex = headers.indexOf("Username");
   const bansIndex = headers.indexOf("Bans");
