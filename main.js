@@ -9,6 +9,7 @@ async function getBanCount(username) {
     .trim()
     .split("\n")
     .map((r) => r.split(","));
+  console.log(rows);
   const headers = rows[0];
   const usernameIndex = headers.indexOf("Username");
   const bansIndex = headers.indexOf("Bans");
